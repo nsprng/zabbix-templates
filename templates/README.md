@@ -7,3 +7,8 @@
 * [zbx_IBM_Storwize_v3700](https://github.com/nsprng/zabbix/blob/master/templates/zbx_IBM_Storwize_v3700.xml)
 
   Template for IBM (Lenovo) V3700 Storage System
+  
+* [zbx_Fujitsu_DX200S4.xml](https://github.com/nsprng/zabbix/blob/master/templates/zbx_Fujitsu_DX200S4.xml)
+
+  Template for Fujitsu Eternus DX200 S4 Storage System
+  
