@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2019-03-26T11:02:15Z</date>
+    <date>2019-04-05T10:09:44Z</date>
     <groups>
         <group>
             <name>Servers Hardware</name>
@@ -9,7 +9,7 @@
     </groups>
     <templates>
         <template>
-            <template>pillar_axiom_600</template>
+            <template>pillar_600</template>
             <name>Pillar Axiom 600 SNMPv2</name>
             <description/>
             <groups>
@@ -39,14 +39,14 @@
             </applications>
             <items>
                 <item>
-                    <name>{HOST.NAME} availability</name>
+                    <name>Host Availability (Ping)</name>
                     <type>3</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>icmpping[{HOST.CONN},2,1000,24,8000]</key>
                     <delay>1m</delay>
-                    <history>1w</history>
-                    <trends>365d</trends>
+                    <history>30d</history>
+                    <trends>180d</trends>
                     <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
@@ -89,7 +89,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#BRINAME},1.3.6.1.4.1.15548.2.2.2.1.1.5,{#BRIAVAIL},1.3.6.1.4.1.15548.2.2.2.1.1.4,{#BRISTAT},1.3.6.1.4.1.15548.2.2.2.7.1.1]</snmp_oid>
                     <key>brick.discovery</key>
-                    <delay>1h</delay>
+                    <delay>24h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -202,7 +202,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:brick.avail[{#BRINAME}].iregexp(AVAILABLE)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:brick.avail[{#BRINAME}].iregexp(AVAILABLE)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Pillar Axiom {#BRINAME} is not available</name>
@@ -218,7 +218,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:brick.status[{#BRINAME}].iregexp(NORMAL)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:brick.status[{#BRINAME}].iregexp(NORMAL)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Pillar Axiom {#BRINAME} status is not NORMAL</name>
@@ -244,7 +244,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#DISKSLOT},1.3.6.1.4.1.15548.2.2.2.3.1.6.2.1,{#DISKSN},1.3.6.1.4.1.15548.2.2.2.3.1.4.2.1,{#DISKSIZE},1.3.6.1.4.1.15548.2.2.2.3.1.8.2.1,{#DISKSTAT},1.3.6.1.4.1.15548.2.2.2.3.1.2.2.1]</snmp_oid>
                     <key>brick1.drives.discovery</key>
-                    <delay>1h</delay>
+                    <delay>24h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -276,9 +276,9 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.15548.2.2.2.3.1.8.2.1.{#SNMPINDEX}</snmp_oid>
                             <key>brick1.drive.size[{#DISKSLOT}]</key>
-                            <delay>50m</delay>
+                            <delay>24h</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -318,7 +318,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.15548.2.2.2.3.1.4.2.1.{#SNMPINDEX}</snmp_oid>
                             <key>brick1.drive.sn[{#DISKSLOT}]</key>
-                            <delay>50m</delay>
+                            <delay>24h</delay>
                             <history>1w</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -399,7 +399,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:brick1.drive.status[{#DISKSLOT}].iregexp(NORMAL)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:brick1.drive.status[{#DISKSLOT}].iregexp(NORMAL)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Pillar Axiom Brick-001 Drive {#DISKSLOT} is not available</name>
@@ -425,7 +425,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#DISKSLOT},1.3.6.1.4.1.15548.2.2.2.3.1.6.1.1,{#DISKSN},1.3.6.1.4.1.15548.2.2.2.3.1.4.1.1,{#DISKSIZE},1.3.6.1.4.1.15548.2.2.2.3.1.8.1.1,{#DISKSTAT},1.3.6.1.4.1.15548.2.2.2.3.1.2.1.1]</snmp_oid>
                     <key>brick2.drives.discovery</key>
-                    <delay>1h</delay>
+                    <delay>24h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -457,9 +457,9 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.15548.2.2.2.3.1.8.1.1.{#SNMPINDEX}</snmp_oid>
                             <key>brick2.drive.size[{#DISKSLOT}]</key>
-                            <delay>50m</delay>
+                            <delay>24h</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -499,7 +499,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.15548.2.2.2.3.1.4.1.1.{#SNMPINDEX}</snmp_oid>
                             <key>brick2.drive.sn[{#DISKSLOT}]</key>
-                            <delay>50m</delay>
+                            <delay>24h</delay>
                             <history>1w</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -580,7 +580,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:brick2.drive.status[{#DISKSLOT}].iregexp(NORMAL)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:brick2.drive.status[{#DISKSLOT}].iregexp(NORMAL)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Pillar Axiom Brick-002 Drive {#DISKSLOT} is not available</name>
@@ -606,7 +606,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#DISKSLOT},1.3.6.1.4.1.15548.2.2.2.3.1.6.3.1,{#DISKSN},1.3.6.1.4.1.15548.2.2.2.3.1.4.3.1,{#DISKSIZE},1.3.6.1.4.1.15548.2.2.2.3.1.8.3.1,{#DISKSTAT},1.3.6.1.4.1.15548.2.2.2.3.1.2.3.1]</snmp_oid>
                     <key>brick3.drives.discovery</key>
-                    <delay>1h</delay>
+                    <delay>24h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -638,9 +638,9 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.15548.2.2.2.3.1.8.3.1.{#SNMPINDEX}</snmp_oid>
                             <key>brick3.drive.size[{#DISKSLOT}]</key>
-                            <delay>50m</delay>
+                            <delay>24h</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -680,7 +680,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.15548.2.2.2.3.1.4.3.1.{#SNMPINDEX}</snmp_oid>
                             <key>brick3.drive.sn[{#DISKSLOT}]</key>
-                            <delay>50m</delay>
+                            <delay>24h</delay>
                             <history>1w</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -761,7 +761,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:brick3.drive.status[{#DISKSLOT}].iregexp(NORMAL)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:brick3.drive.status[{#DISKSLOT}].iregexp(NORMAL)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Pillar Axiom Brick-003 Drive {#DISKSLOT} is not available</name>
@@ -787,7 +787,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#DISKSLOT},1.3.6.1.4.1.15548.2.2.2.3.1.6.4.1,{#DISKSN},1.3.6.1.4.1.15548.2.2.2.3.1.4.4.1,{#DISKSIZE},1.3.6.1.4.1.15548.2.2.2.3.1.8.4.1,{#DISKSTAT},1.3.6.1.4.1.15548.2.2.2.3.1.2.4.1]</snmp_oid>
                     <key>brick4.drives.discovery</key>
-                    <delay>1h</delay>
+                    <delay>24h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -819,9 +819,9 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.15548.2.2.2.3.1.8.4.1.{#SNMPINDEX}</snmp_oid>
                             <key>brick4.drive.size[{#DISKSLOT}]</key>
-                            <delay>50m</delay>
+                            <delay>24h</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -861,7 +861,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.15548.2.2.2.3.1.4.4.1.{#SNMPINDEX}</snmp_oid>
                             <key>brick4.drive.sn[{#DISKSLOT}]</key>
-                            <delay>50m</delay>
+                            <delay>24h</delay>
                             <history>1w</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -942,7 +942,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:brick4.drive.status[{#DISKSLOT}].iregexp(NORMAL)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:brick4.drive.status[{#DISKSLOT}].iregexp(NORMAL)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Pillar Axiom Brick-004 Drive {#DISKSLOT} is not available</name>
@@ -968,7 +968,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#LUNAME},1.3.6.1.4.1.15548.2.3.5.1.1.3,{#LULSZ},1.3.6.1.4.1.15548.2.1.2.2.2.1.1.1.2,{#LUPSZ},1.3.6.1.4.1.15548.2.1.2.2.2.1.1.1.5,{#LUACT},1.3.6.1.4.1.15548.2.1.2.2.2.1.1.1.40,{#LUPRIO},1.3.6.1.4.1.15548.2.1.2.2.2.1.1.1.31]</snmp_oid>
                     <key>lun.discovery</key>
-                    <delay>1h</delay>
+                    <delay>24h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -1000,9 +1000,9 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.15548.2.1.2.2.2.1.1.1.5.{#SNMPINDEX}</snmp_oid>
                             <key>lun.size[{#LUNAME}]</key>
-                            <delay>1h</delay>
+                            <delay>24h</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -1083,7 +1083,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:lun.status[{#LUNAME}].iregexp(true)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:lun.status[{#LUNAME}].iregexp(true)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>LUN {#LUNAME} is inactive on {HOST.NAME}</name>
@@ -1094,7 +1094,7 @@
                             <priority>2</priority>
                             <description/>
                             <type>0</type>
-                            <manual_close>0</manual_close>
+                            <manual_close>1</manual_close>
                             <dependencies/>
                             <tags/>
                         </trigger_prototype>
@@ -1143,7 +1143,7 @@
                             <key>lun.aiosize.read[{#LUNAME}]</key>
                             <delay>1m</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
@@ -1187,7 +1187,7 @@
                             <key>lun.aiosize.write[{#LUNAME}]</key>
                             <delay>1m</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
@@ -1231,7 +1231,7 @@
                             <key>lun.atps.read[{#LUNAME}]</key>
                             <delay>1m</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
@@ -1275,7 +1275,7 @@
                             <key>lun.atps.write[{#LUNAME}]</key>
                             <delay>1m</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
@@ -1319,7 +1319,7 @@
                             <key>lun.ioltncy.comb[{#LUNAME}]</key>
                             <delay>1m</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
@@ -1363,7 +1363,7 @@
                             <key>lun.ioltncy.read[{#LUNAME}]</key>
                             <delay>1m</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
@@ -1407,7 +1407,7 @@
                             <key>lun.ioltncy.write[{#LUNAME}]</key>
                             <delay>1m</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
@@ -1451,7 +1451,7 @@
                             <key>lun.iops.read[{#LUNAME}]</key>
                             <delay>1m</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
@@ -1495,7 +1495,7 @@
                             <key>lun.iops.write[{#LUNAME}]</key>
                             <delay>1m</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
@@ -1533,7 +1533,196 @@
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes/>
-                    <graph_prototypes/>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>LUN {#LUNAME}: Average I/O Latency</name>
+                            <width>900</width>
+                            <height>200</height>
+                            <yaxismin>0</yaxismin>
+                            <yaxismax>100</yaxismax>
+                            <show_work_period>1</show_work_period>
+                            <show_triggers>0</show_triggers>
+                            <type>0</type>
+                            <show_legend>1</show_legend>
+                            <show_3d>0</show_3d>
+                            <percent_left>0</percent_left>
+                            <percent_right>0</percent_right>
+                            <ymin_type_1>0</ymin_type_1>
+                            <ymax_type_1>0</ymax_type_1>
+                            <ymin_item_1>0</ymin_item_1>
+                            <ymax_item_1>0</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>EE0000</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>pillar_600</host>
+                                        <key>lun.ioltncy.comb[{#LUNAME}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>33FF33</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>pillar_600</host>
+                                        <key>lun.ioltncy.read[{#LUNAME}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>3333FF</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>pillar_600</host>
+                                        <key>lun.ioltncy.write[{#LUNAME}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>LUN {#LUNAME}: Average I/O Size</name>
+                            <width>900</width>
+                            <height>200</height>
+                            <yaxismin>0</yaxismin>
+                            <yaxismax>100</yaxismax>
+                            <show_work_period>1</show_work_period>
+                            <show_triggers>0</show_triggers>
+                            <type>0</type>
+                            <show_legend>1</show_legend>
+                            <show_3d>0</show_3d>
+                            <percent_left>0</percent_left>
+                            <percent_right>0</percent_right>
+                            <ymin_type_1>0</ymin_type_1>
+                            <ymax_type_1>0</ymax_type_1>
+                            <ymin_item_1>0</ymin_item_1>
+                            <ymax_item_1>0</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>33FF33</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>pillar_600</host>
+                                        <key>lun.aiosize.read[{#LUNAME}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>3333FF</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>pillar_600</host>
+                                        <key>lun.aiosize.write[{#LUNAME}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>LUN {#LUNAME}: Average IOPS</name>
+                            <width>900</width>
+                            <height>200</height>
+                            <yaxismin>0</yaxismin>
+                            <yaxismax>100</yaxismax>
+                            <show_work_period>1</show_work_period>
+                            <show_triggers>0</show_triggers>
+                            <type>0</type>
+                            <show_legend>1</show_legend>
+                            <show_3d>0</show_3d>
+                            <percent_left>0</percent_left>
+                            <percent_right>0</percent_right>
+                            <ymin_type_1>0</ymin_type_1>
+                            <ymax_type_1>0</ymax_type_1>
+                            <ymin_item_1>0</ymin_item_1>
+                            <ymax_item_1>0</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>33FF33</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>pillar_600</host>
+                                        <key>lun.iops.read[{#LUNAME}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>3333FF</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>pillar_600</host>
+                                        <key>lun.iops.write[{#LUNAME}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>LUN {#LUNAME}: Average Throughput Per Second</name>
+                            <width>900</width>
+                            <height>200</height>
+                            <yaxismin>0</yaxismin>
+                            <yaxismax>100</yaxismax>
+                            <show_work_period>1</show_work_period>
+                            <show_triggers>0</show_triggers>
+                            <type>0</type>
+                            <show_legend>1</show_legend>
+                            <show_3d>0</show_3d>
+                            <percent_left>0</percent_left>
+                            <percent_right>0</percent_right>
+                            <ymin_type_1>0</ymin_type_1>
+                            <ymax_type_1>0</ymax_type_1>
+                            <ymin_item_1>0</ymin_item_1>
+                            <ymax_item_1>0</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>33FF33</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>pillar_600</host>
+                                        <key>lun.atps.read[{#LUNAME}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>3333FF</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>pillar_600</host>
+                                        <key>lun.atps.write[{#LUNAME}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
                     <host_prototypes/>
                     <jmx_endpoint/>
                 </discovery_rule>
@@ -1543,7 +1732,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#PLTNAME},1.3.6.1.4.1.15548.2.2.3.2.1.2.1,{#PLTMODE},1.3.6.1.4.1.15548.2.2.3.2.1.3.1,{#PLTSTAT},1.3.6.1.4.1.15548.2.2.3.2.1.12.1]</snmp_oid>
                     <key>pilot.discovery</key>
-                    <delay>1h</delay>
+                    <delay>24h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -1575,7 +1764,7 @@
                             <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                             <snmp_oid>1.3.6.1.4.1.15548.2.2.3.2.1.3.1.{#SNMPINDEX}</snmp_oid>
                             <key>pilot.mode[{#PLTNAME}]</key>
-                            <delay>1m</delay>
+                            <delay>5m</delay>
                             <history>1w</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -1656,7 +1845,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:pilot.status[{#PLTNAME}].iregexp(NORMAL)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:pilot.status[{#PLTNAME}].iregexp(NORMAL)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Pillar Axiom {#PLTNAME} is not available</name>
@@ -1682,7 +1871,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#SLMRNAME},1.3.6.1.4.1.15548.2.2.1.1.1.5,{#SLMRAVAIL},1.3.6.1.4.1.15548.2.2.1.1.1.4,{#SLMRSTAT},1.3.6.1.4.1.15548.2.2.1.1.1.9,{#SLMRTEMPSTAT},1.3.6.1.4.1.15548.2.2.1.1.1.10]</snmp_oid>
                     <key>slammer.discovery</key>
-                    <delay>1h</delay>
+                    <delay>24h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -1837,7 +2026,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:slammer.avail[{#SLMRNAME}].iregexp(AVAILABLE)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:slammer.avail[{#SLMRNAME}].iregexp(AVAILABLE)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Pillar Axiom {#SLMRNAME} is not available</name>
@@ -1853,7 +2042,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:slammer.status[{#SLMRNAME}].iregexp(NORMAL)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:slammer.status[{#SLMRNAME}].iregexp(NORMAL)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Pillar Axiom {#SLMRNAME} status is not NORMAL</name>
@@ -1869,7 +2058,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:slammer.tempstat[{#SLMRNAME}].iregexp(NORMAL)}&lt;&gt;1</expression>
+                            <expression>{pillar_600:slammer.tempstat[{#SLMRNAME}].iregexp(NORMAL)}&lt;&gt;1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Pillar Axiom {#SLMRNAME} temperature is not NORMAL</name>
@@ -1895,7 +2084,7 @@
                     <snmp_community>{$SNMP_COMMUNITY}</snmp_community>
                     <snmp_oid>discovery[{#DOMNAME},1.3.6.1.4.1.15548.2.2.2.2.1.5.1,{#STORTOTAL},1.3.6.1.4.1.15548.2.1.2.3.1.1.2,{#STORUSED},1.3.6.1.4.1.15548.2.1.2.3.1.1.3,{#STORFREE},1.3.6.1.4.1.15548.2.1.2.3.1.1.4]</snmp_oid>
                     <key>stor.info.discovery</key>
-                    <delay>1h</delay>
+                    <delay>24h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -1929,7 +2118,7 @@
                             <key>stor.free[{#DOMNAME}]</key>
                             <delay>1h</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -1973,7 +2162,7 @@
                             <key>stor.total[{#DOMNAME}]</key>
                             <delay>1h</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -2017,7 +2206,7 @@
                             <key>stor.used[{#DOMNAME}]</key>
                             <delay>1h</delay>
                             <history>1w</history>
-                            <trends>365d</trends>
+                            <trends>180d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -2056,7 +2245,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{pillar_axiom_600:stor.free[{#DOMNAME}].last()}&lt;1000</expression>
+                            <expression>{pillar_600:stor.free[{#DOMNAME}].last()}&lt;1000</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} - Storage Domain free space less than 1Tb</name>
@@ -2064,10 +2253,10 @@
                             <correlation_tag/>
                             <url/>
                             <status>0</status>
-                            <priority>4</priority>
+                            <priority>2</priority>
                             <description/>
                             <type>0</type>
-                            <manual_close>0</manual_close>
+                            <manual_close>1</manual_close>
                             <dependencies/>
                             <tags/>
                         </trigger_prototype>
@@ -2085,10 +2274,10 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{pillar_axiom_600:icmpping[{HOST.CONN},2,1000,24,8000].last()}&lt;&gt;1</expression>
+            <expression>{pillar_600:icmpping[{HOST.CONN},2,1000,24,8000].last()}&lt;&gt;1</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
-            <name>{HOST.NAME} is unavailable</name>
+            <name>{HOST.NAME} is not available</name>
             <correlation_mode>0</correlation_mode>
             <correlation_tag/>
             <url/>

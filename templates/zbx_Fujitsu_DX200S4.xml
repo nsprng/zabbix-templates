@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2019-04-03T12:51:06Z</date>
+    <date>2019-04-05T10:08:21Z</date>
     <groups>
         <group>
             <name>Servers Hardware</name>
@@ -164,6 +164,49 @@
                     <jmx_endpoint/>
                     <master_item/>
                 </item>
+                <item>
+                    <name>Host Availability (Ping)</name>
+                    <type>3</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>icmpping[{HOST.CONN},2,1000,24,8000]</key>
+                    <delay>1m</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>System</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>OK_ERROR</name>
+                    </valuemap>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <master_item/>
+                </item>
             </items>
             <discovery_rules>
                 <discovery_rule>
@@ -319,7 +362,40 @@
                             <tags/>
                         </trigger_prototype>
                     </trigger_prototypes>
-                    <graph_prototypes/>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>BTU {#BTUID} Charge Graph</name>
+                            <width>900</width>
+                            <height>200</height>
+                            <yaxismin>0</yaxismin>
+                            <yaxismax>100</yaxismax>
+                            <show_work_period>1</show_work_period>
+                            <show_triggers>1</show_triggers>
+                            <type>0</type>
+                            <show_legend>1</show_legend>
+                            <show_3d>0</show_3d>
+                            <percent_left>0</percent_left>
+                            <percent_right>0</percent_right>
+                            <ymin_type_1>0</ymin_type_1>
+                            <ymax_type_1>0</ymax_type_1>
+                            <ymin_item_1>0</ymin_item_1>
+                            <ymax_item_1>0</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>1A7C11</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>fujitsu_dx200s4</host>
+                                        <key>btu.charge[{#BTUID}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
                     <host_prototypes/>
                     <jmx_endpoint/>
                 </discovery_rule>
@@ -2138,6 +2214,22 @@
             <dependencies/>
             <tags/>
         </trigger>
+        <trigger>
+            <expression>{fujitsu_dx200s4:icmpping[{HOST.CONN},2,1000,24,8000].last()}&lt;&gt;1</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>{HOST.NAME} is not available</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>5</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>1</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
     </triggers>
     <value_maps>
         <value_map>
@@ -2242,6 +2334,19 @@
                 <mapping>
                     <value>15</value>
                     <newvalue>dormant</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>OK_ERROR</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>ERROR</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>OK</newvalue>
                 </mapping>
             </mappings>
         </value_map>
