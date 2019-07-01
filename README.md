@@ -16,6 +16,6 @@
 
   Template for SUN/Oracle SPARC T4-4 ILOM (IPMI checks)
   
-* [IBM_Storwize_V3700](https://github.com/nsprng/zabbix-templates/tree/master/zbx_IBM_Storwize_V3700)
+* [zbx_IBM_Storwize_V3700](https://github.com/nsprng/zabbix-templates/tree/master/zbx_IBM_Storwize_V3700)
 
   Template for IBM Storwize V3700 (External checks)
