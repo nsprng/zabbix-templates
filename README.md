@@ -15,6 +15,10 @@
 * [IBM_Storwize_V3700](https://github.com/nsprng/zabbix-templates/tree/master/IBM_Storwize_V3700)
 
   Template for IBM Storwize V3700 Storage System (External checks)
+  
+* [IBM_x3650M3](https://github.com/nsprng/zabbix-templates/tree/master/IBM_x3650M3)
+
+  Template for IBM x3650M3 IMM (IPMI+SNMPv1 checks)
 
 * [Oracle_Pillar_Axiom_600](https://github.com/nsprng/zabbix-templates/tree/master/Oracle_Pillar_Axiom_600)
   
