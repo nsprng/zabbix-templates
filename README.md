@@ -22,8 +22,20 @@
 
 * [Oracle_Pillar_Axiom_600](https://github.com/nsprng/zabbix-templates/tree/master/Oracle_Pillar_Axiom_600)
   
-  Template for SUN/Oracle Pillar Axiom 600 Storage System (Active SNMPv2 checks)
+  Template for Sun/Oracle Pillar Axiom 600 Storage System (Active SNMPv2 checks)
     
 * [Oracle_SPARC_T4-4](https://github.com/nsprng/zabbix-templates/tree/master/Oracle_SPARC_T4-4)
 
-  Template for SUN/Oracle SPARC T4-4 ILOM (IPMI checks)
+  Template for Sun/Oracle SPARC T4-4 ILOM (IPMI checks)
+
+* [Sun_Fire_x4140](https://github.com/nsprng/zabbix-templates/tree/master/Sun_Fire_x4140)
+
+  Template for Sun Fire x4140 ILOM (IPMI checks)
+
+* [Sun_Fire_x4240](https://github.com/nsprng/zabbix-templates/tree/master/Sun_Fire_x4240)
+
+  Template for Sun Fire x4240 ILOM (IPMI checks)
+  
+* [Sun_Fire_x4600](https://github.com/nsprng/zabbix-templates/tree/master/Sun_Fire_x4600)
+
+  Template for Sun Fire x4600 ILOM (IPMI checks)
