@@ -13,6 +13,7 @@
   Template for Huawei RH2288H V3 iBMC (IPMI+SNMPv3 checks)
 
 * [IBM_Flex_x240](https://github.com/nsprng/zabbix-templates/tree/master/IBM_Flex_x240)
+
   Template for IBM Flex System x240 (SNMPv3 checks)
 
 * [IBM_Storwize_V3700](https://github.com/nsprng/zabbix-templates/tree/master/IBM_Storwize_V3700)
