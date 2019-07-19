@@ -4,6 +4,10 @@
 
   Template for Fujitsu Eternus DX200 S4 Storage System (Active SNMPv2 checks)
 
+* [Fujitsu_RX2530M4](https://github.com/nsprng/zabbix-templates/tree/master/Fujitsu_RX2530M4)
+
+  Template for Fujitsu RX2530M4 iRMC (IPMI checks)
+
 * [Fujitsu_RX2540M4](https://github.com/nsprng/zabbix-templates/tree/master/Fujitsu_RX2540M4)
 
   Template for Fujitsu RX2540M4 iRMC (IPMI checks)
